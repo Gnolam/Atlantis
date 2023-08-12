@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - neworigins
+      - suther
   workflow_dispatch:
   pull_request:
 
@@ -19,8 +20,8 @@ jobs:
           - windows
           - macos
         include:
-           - os: windows
-             ext: .exe
+          - os: windows
+            ext: .exe
     steps:
       - uses: actions/checkout@v2
       - run: make all-clean && make all
@@ -28,12 +29,13 @@ jobs:
         with:
           name: ${{ matrix.os }}
           path: |
-              basic/basic${{ matrix.ext }}
-              fracas/fracas${{ matrix.ext }}
-              havilah/havilah${{ matrix.ext }}
-              kingdoms/kingdoms${{ matrix.ext }}
-              neworigins/neworigins${{ matrix.ext }}
-              standard/standard${{ matrix.ext }}
+            basic/basic${{ matrix.ext }}
+            fracas/fracas${{ matrix.ext }}
+            havilah/havilah${{ matrix.ext }}
+            kingdoms/kingdoms${{ matrix.ext }}
+            neworigins/neworigins${{ matrix.ext }}
+            suther/suther${{ matrix.ext }}
+            standard/standard${{ matrix.ext }}
 
   test:
     name: Test

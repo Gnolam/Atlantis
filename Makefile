@@ -28,7 +28,7 @@ OBJECTS = $(patsubst %.o,$(GAME)/obj/%.o,$(RULESET_OBJECTS)) \
 $(GAME)-m: objdir $(OBJECTS)
 	$(CPLUS) $(CFLAGS) -o $(GAME)/$(GAME) $(OBJECTS)
 
-all: basic standard fracas kingdoms havilah neworigins
+all: basic standard fracas kingdoms havilah neworigins suther
 
 arcadia: FORCE
 	$(MAKE) GAME=arcadia
@@ -51,11 +51,14 @@ havilah: FORCE
 neworigins: FORCE
 	$(MAKE) GAME=neworigins
 
+suther: FORCE
+	$(MAKE) GAME=suther
+
 $(GAME)/$(GAME): FORCE
 	$(MAKE) GAME=$(GAME)
 
 all-clean: basic-clean standard-clean fracas-clean kingdoms-clean \
-	havilah-clean neworigins-clean
+	havilah-clean neworigins-clean suther-clean
 
 arcadia-clean:
 	$(MAKE) GAME=arcadia clean
@@ -78,6 +81,9 @@ havilah-clean:
 neworigins-clean:
 	$(MAKE) GAME=neworigins clean
 
+suther-clean:
+	$(MAKE) GAME=suther clean
+
 clean:
 	rm -f $(OBJECTS)
 	if [ -d obj ]; then rmdir obj; fi
@@ -86,7 +92,7 @@ clean:
 	rm -f $(GAME)/$(GAME)
 
 all-rules: basic-rules standard-rules fracas-rules kingdoms-rules \
-	havilah-rules neworigins-rules
+	havilah-rules neworigins-rules suther-rules
 
 arcadia-rules:
 	$(MAKE) GAME=arcadia rules
@@ -108,6 +114,11 @@ havilah-rules:
 
 neworigins-rules:
 	$(MAKE) GAME=neworigins rules
+
+
+suther-rules:
+	$(MAKE) GAME=suther rules
+
 
 rules: $(GAME)/$(GAME)
 	(cd $(GAME); \
